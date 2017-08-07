@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$" />
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library name="PHP" type="php">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../nbateams/vendor/altorouter/altorouter" />
+          <root url="file://$MODULE_DIR$/../nbateams/vendor/composer" />
+          <root url="file://$MODULE_DIR$/../nbateams/vendor/ircmaxell/password-compat" />
+          <root url="file://$MODULE_DIR$/../nbateams/vendor/ircmaxell/random-lib" />
+          <root url="file://$MODULE_DIR$/../nbateams/vendor/ircmaxell/security-lib" />
+          <root url="file://$MODULE_DIR$/../nbateams/vendor/league/plates" />
+          <root url="file://$MODULE_DIR$/../nbateams/vendor/league/url" />
+          <root url="file://$MODULE_DIR$/../nbateams/vendor/phpmailer/phpmailer" />
+          <root url="file://$MODULE_DIR$/../nbateams/vendor/symfony/polyfill-mbstring" />
+          <root url="file://$MODULE_DIR$/../nbateams/vendor/true/punycode" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../nbateams/vendor/altorouter/altorouter" />
+          <root url="file://$MODULE_DIR$/../nbateams/vendor/composer" />
+          <root url="file://$MODULE_DIR$/../nbateams/vendor/ircmaxell/password-compat" />
+          <root url="file://$MODULE_DIR$/../nbateams/vendor/ircmaxell/random-lib" />
+          <root url="file://$MODULE_DIR$/../nbateams/vendor/ircmaxell/security-lib" />
+          <root url="file://$MODULE_DIR$/../nbateams/vendor/league/plates" />
+          <root url="file://$MODULE_DIR$/../nbateams/vendor/league/url" />
+          <root url="file://$MODULE_DIR$/../nbateams/vendor/phpmailer/phpmailer" />
+          <root url="file://$MODULE_DIR$/../nbateams/vendor/symfony/polyfill-mbstring" />
+          <root url="file://$MODULE_DIR$/../nbateams/vendor/true/punycode" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+  </component>
+</module>
