@@ -8,4 +8,6 @@ class ConsoleModel extends \W\Model\Model{
         
         parent::__construct();
     }
+    
+    
 }

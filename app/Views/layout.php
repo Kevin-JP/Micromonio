@@ -23,30 +23,37 @@
                     <a class="navbar-brand" href="#">Micromonio</a>
                 </div>
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="<?= $this->url('default_home') ?>">Home</a></li>
-                    <li><a href="</?= $this->url('console') ?>">Consoles</a></li>
-                    <li><a href="#">Page 2</a></li>
-                    <li><a href="#">Page 3</a></li>
+                    <li><a href="<?= $this->url('default_home') ?>">Home</a></li>
+                    <li><a href="<?= $this->url('consoles_showconsoles') ?>">Consoles</a></li>
+                    <?php if(empty($_SESSION['user'])) : ?>
+                        <li><a href="<?= $this->url('users_signin') ?>">Sign In</a></li>
+                        <li><a href="<?= $this->url('users_signup') ?>">Sign up</a></li>
+                    <?php endif; ?>    
+                    <?php if(!empty($_SESSION['user'])) : ?>
+                        <!--Si admin alors affiche page Add/Edit-->
+                        <?php if($_SESSION['user']['usr_role'] === 'admin'): ?>
+                            <li><a href="<?= $this->url('add_game') ?>">Ajout d'un JV</a></li>
+                        <?php endif; ?>
+                        <li><a href="<?= $this->url('users_signout'); ?>">Se déconnecter</a></li>
+                        <li style="line-height: 50px; padding: 0 15px;"><?= $_SESSION['user']['usr_username'] ?> est connecté</li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </nav>
     </header>
+    
 	<div class="container" >
-        
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h1>Micromonio - <?= $this->e($title) ?></h1>
             </div>
-            
-            <div class="panel-body">
+                <!-- Gestion générique des messages d'erreur -->
+                <?php if (!empty($w_flash_message)) : ?>
+                <div class="alert alert-<?= $w_flash_message->level ?>"><?= $w_flash_message->message ?></div>
+                <?php endif; ?>
+        
                 <?= $this->section('main_content') ?>
-            </div><br>
-            
-            <?php if(!empty($_SESSION)) : ?>
-                <a href="<?= $this->url('signout'); ?>">se déconnecter</a><br>
-            <?php endif; ?>
         </div>
-
 		<footer>
 		</footer>
 	</div>

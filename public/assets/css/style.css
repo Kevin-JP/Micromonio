@@ -9,20 +9,15 @@ html, body {
 
 a {
 	text-decoration: none;
-	color: #A6E22E;
+	color: #0000ff;
 }
 
 a:hover {
-	color: #F92672;
+	color: #dc2c0f;
 }
 
 
 /* CARD STYLE HOME */
-html {
-	font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
-	font-size: 14px;
-}
-
 h5 {
 	font-size: 1.28571429em;
 	font-weight: 700;
@@ -38,6 +33,7 @@ h5 {
 	border: none;
 	border-radius: .28571429rem;
 	box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+        /*margin-bottom: 50px;*/
 }
 
 .card-block {
@@ -145,5 +141,26 @@ h5 {
 }
 
 .center {
+    text-align: center;
+}
+
+.row-panel {
+    margin: 0;
+    padding: 20px 0;
+}
+
+.row-table{
+    margin: 0;
+    /*padding: 10px;*/
+}
+
+.row-sign {
+    margin: 0;
+    padding: 20px 0;
+}
+
+.table, th{
+    margin: 0;
+    /*padding: 10px;*/
     text-align: center;
 }

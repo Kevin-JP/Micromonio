@@ -1,22 +1,38 @@
 <?php 
 //hérite du fichier layout.php à la racine de app/Views/
-//$this->layout('layout', array('title' => 'Équipes de la division '.$divisionName.''));
-$this->layout('layoutBootstrap', array('title' => 'Consoles'));
+$this->layout('layout', array('title' => 'Liste des Consoles'));
 ?>
 
 <?php 
 //début du bloc main_content
 $this->start('main_content'); ?>
-<h1>Liste des équipes</h1>
+<!--<h1>Liste des consoles</h1>-->
 
-<!--on crée une liste des divisions--> 
-<ul>
-<?php foreach ($teams as $currentTeam) : ?>
-    <li><?= $currentTeam['tea_name'] ?></li>
-<?php endforeach; ?>
-</ul>
+<!-- on crée une liste des consoles --> 
+<div class="row row-table">
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Nom de la console</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($consoles as $currentConsole) : ?>
+            <tr>
+                <td><?= $currentConsole['con_name'] ?></td>
+                <td><a href="<?= $this->url('console_id', ['id'=>$currentConsole['con_id'], 'conname'=>$currentConsole['con_name']]); ?>">Liste des jeux</a></td>
+                
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
 
-<a href="<?= $this->url('default_home'); ?>">Accueil</a>
+
+
+
+
 <?php 
 //fin du bloc
 $this->stop('main_content'); ?>
