@@ -12,7 +12,7 @@
             <div class="card">
                 <img class="card-img-top" src="<?= $currentGame['vid_image'] ?>">
                 <div class="card-block">
-                    <h5 class="text-bold"><?= $currentGame['vid_name'] ?></h5>
+                    <h5 class="text-bold"><a href="<?= $this->url('game_details', ['id'=>$currentGame['con_id'], 'conname'=>$currentGame['con_name'], 'id_game'=>$currentGame['vid_id'], 'vid_name'=> strtolower(str_replace(' ', '-', $currentGame['vid_name']))]); ?>"><?= $currentGame['vid_name'] ?></a></h5>
     <!--                <div class="meta">-->
     <!--                    <a href="#">Catégorie</a>-->
     <!--                </div>-->

@@ -209,6 +209,16 @@ class VideoGameController extends Controller{
     }
     
     public function details($id=0, $console='', $gameId, $gameName='') {
-        echo $gameId;
+//        echo $gameId;
+  
+        $gameModel = new \Model\VideoGameModel;
+        $gameinfos = $gameModel->getAllInfosGame($gameId);
+
+//        debug($gameinfos);exit;
+        
+        $this->show('details/details', array(
+            'gameinfos'=> $gameinfos,
+        ));
+
     }
 }

@@ -19,7 +19,7 @@ $this->start('main_content'); ?>
         <tbody>
             <?php foreach ($gamesList as $currentGame) : ?>
             <tr>
-                <td><a href=""><?= $currentGame['vid_name'] ?></a></td>
+                <td><a href="<?= $this->url('game_details', ['id'=>$currentGame['con_id'], 'conname'=>$currentGame['con_name'], 'id_game'=>$currentGame['vid_id'], 'vid_name'=> strtolower(str_replace(' ', '-', $currentGame['vid_name']))]); ?>"><?= $currentGame['vid_name'] ?></a></td>
                 <td><?= $currentGame['gen_name'] ?></td>
                 <td><?= $currentGame['vid_year'] ?></td>
             </tr>
