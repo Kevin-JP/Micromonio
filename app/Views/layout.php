@@ -37,7 +37,7 @@
                             <li><a href="<?= $this->url('add_game') ?>">Ajout d'un JV</a></li>
                         <?php endif; ?>
                         <li><a href="<?= $this->url('users_signout'); ?>">Se déconnecter</a></li>
-                        <li style="line-height: 50px; padding: 0 15px;"><?= $_SESSION['user']['usr_username'] ?> est connecté</li>
+                        <li style="line-height: 50px; padding: 0 15px;"><strong><?= $_SESSION['user']['usr_username'] ?></strong> est connecté</li>
                     <?php endif; ?>
                 </ul>
             </div>
