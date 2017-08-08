@@ -29,5 +29,13 @@ class VideoGameModel extends \W\Model\Model{
 
 		return $sth->fetchAll();
     }
+    
+    function getAllInfosGame($id) {
+        $sql = 'SELECT * FROM videogame INNER JOIN console ON con_id = console_con_id INNER JOIN genre ON gen_id = genre_gen_id WHERE vid_id = ' . $id ;
+        $sth = $this->dbh->prepare($sql);
+		$sth->execute();
+
+		return $sth->fetch();
+    }
 
 }

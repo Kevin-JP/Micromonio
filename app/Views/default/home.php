@@ -20,7 +20,7 @@
                 <div class="card-footer">
                     <span class="float-left"><?= $currentGame['vid_year'] ?></span>
                     <span class="center"><a href="<?= $this->url('console_id', ['id'=>$currentGame['con_id'], 'conname'=>$currentGame['con_name']]); ?>"><?= $currentGame['con_name'] ?></a></span>
-                    <span class="editor"><i class=""></i><?= $currentGame['vid_editor'] ?></span>
+                    <span class="editor"><a href="<?= $this->url('edit_game', ['id'=>$currentGame['vid_id']]); ?>">Modifier</a></span>
                 </div>
             </div>
         </div>

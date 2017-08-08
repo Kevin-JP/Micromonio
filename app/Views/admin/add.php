@@ -11,6 +11,16 @@ $this->start('main_content'); ?>
     <div class="col-md-2 col-sm-2 col-xs-0"></div>
     <div class="col-md-8 col-sm-8 col-xs-12">
     <form action="" method="POST">
+        <!--select pour récupérer les données du jeu à modifier-->
+        <div class="form-group">
+            <label for="console">Modifier un jeu:</label>
+            <select id="selectGame" name="console">
+                <?php foreach ($games as $key=>$value) :?>
+                    <option value="<?= $key+1 ?>"><?= $value['vid_name'] ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        
         <div class="form-group">
             <label for="title">Titre:</label>
             <input type="text" class="form-control"name="title">
@@ -48,7 +58,14 @@ $this->start('main_content'); ?>
     </div>
     <div class="col-md-2 col-sm-2 col-xs-0"></div>
 </div>
-
+<script>
+    $(document).ready(function(){
+       $('#selectGame').change(function(){
+           window.location.replace("http://micromonio.dev/admin/videogame/ajax/edit/"+$(this).val());
+       });
+        
+    });
+</script>
 
 
 
