@@ -30,6 +30,7 @@
                     <?php if(empty($_SESSION['user'])) : ?>
                         <li><a href="<?= $this->url('users_signin') ?>">Sign In</a></li>
                         <li><a href="<?= $this->url('users_signup') ?>">Sign up</a></li>
+                        <li><a href="<?= $this->url('users_forgotPassword') ?>">Forgot Password</a></li>
                     <?php endif; ?>    
                     <?php if(!empty($_SESSION['user'])) : ?>
                         <!--Si admin alors affiche page Add/Edit-->

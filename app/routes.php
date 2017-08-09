@@ -14,11 +14,12 @@
         ['GET', '/consoles/[i:id]', 'Console#showGames', 'console_id2'],
         
         
-        // Add/Edit Game
+        // Add/Edit/Delete Game
         ['GET|POST', '/admin/videogame/add/', 'VideoGame#addGame', 'add_game'],
 //        ['POST', '/admin/videogame/ajax/add/', 'VideoGame#addGame', 'ajax_add_game'],
         ['GET', '/admin/videogame/ajax/edit/[i:id]', 'VideoGame#getGame', 'edit_game'],
         ['POST', '/admin/videogame/ajax/edit/[i:id]', 'VideoGame#editGame', 'edit_game2'],
+        ['GET|POST', '/admin/videogame/delete/[i:id]', 'VideoGame#deleteGame', 'delete_game'],
 
         
         // Users signin & signup
@@ -26,6 +27,13 @@
         ['POST', '/signin/', 'Users#signinPost', 'users_signin_post'],
         ['GET|POST', '/signup/', 'Users#signup', 'users_signup'],
         ['GET', '/signout/', 'Users#signout', 'users_signout'],
+        
+        // Forgot Pass
+        ['GET|POST', '/forgot_password/', 'Users#forgotPassword', 'users_forgotPassword'],
+        
+        // Forgot Pass
+        ['GET', '/reset_password/[:token]', 'Users#getResetPasswordForm', 'users_resetPassword'],
+        ['POST', '/reset_password/[:token]', 'Users#resetPassword', 'users_resetPassword2'],
         
         // Détails - on récupère que l'id dans le controlleur, osef du nom
         ['GET', '/consoles/[i:id]-[a:conname]/[i:id_game]-[:vid_name]/', 'VideoGame#details', 'game_details'],

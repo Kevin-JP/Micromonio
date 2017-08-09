@@ -13,7 +13,7 @@ $this->start('main_content'); ?>
     <form action="" method="POST">
         <!--select pour récupérer les données du jeu à modifier-->
         <div class="form-group">
-            <label for="console">Modifier un jeu:</label>
+            <label for="console">Modifier un jeu déjà présent dans la DB:</label>
             <select id="selectGame" name="console">
                 <?php foreach ($games as $key=>$value) :?>
                     <option value="<?= $key+1 ?>"><?= $value['vid_name'] ?></option>
@@ -53,7 +53,7 @@ $this->start('main_content'); ?>
                 <?php endforeach; ?>
             </select>
         </div>
-        <button type="submit" class="btn btn-default">Ajouter</button>
+        <button type="submit" class="btn btn-primary">Ajouter</button>
     </form>
     </div>
     <div class="col-md-2 col-sm-2 col-xs-0"></div>

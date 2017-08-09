@@ -77,7 +77,7 @@ class VideoGameController extends Controller{
                         'vid_image' => $image,
                         'console_con_id' => $console,
                         'genre_gen_id' => $genre
-                    )
+                    ), true
                 );
                     
                 // Si insertion ok
@@ -208,15 +208,30 @@ class VideoGameController extends Controller{
         }
     }
     
+    public function deleteGame($id) {
+        $this->allowTo('admin');
+        
+        $gameModel = new \Model\VideoGameModel();
+        $gameDelete = $gameModel->delete($id);
+        
+        if (gameDelete !== false) {
+            $this->flash('Le jeu a été supprimé', 'success');
+            $this->redirectToRoute('default_home');
+        }
+        else {
+            $this->flash('Erreur dans la suppression du film', 'danger');
+        }
+    }
+
     public function details($id=0, $console='', $gameId, $gameName='') {
 //        echo $gameId;
-  
+
         $gameModel = new \Model\VideoGameModel;
         $gameinfos = $gameModel->getAllInfosGame($gameId);
 
 //        debug($gameinfos);exit;
-        
-        $this->show('details/details', array(
+
+        $this->show('game/details', array(
             'gameinfos'=> $gameinfos,
         ));
 

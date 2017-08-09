@@ -146,4 +146,163 @@ class UsersController extends Controller {
         $this->flash('Déconnecté', 'info');
         $this->redirectToRoute('default_home');
     }
+    
+    
+    public function forgotPassword() {
+        if (!empty($_POST)) {
+            $email = isset($_POST['email']) ? strip_tags(trim($_POST['email'])) : '';
+
+            // Validation
+            $formValid = true;
+
+            if (empty($email)){
+                $this->flash('L\'émail est vide', 'danger');
+                $formValid = false;
+            }
+            else if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+                $this->flash('L\'émail est invalide', 'danger');
+                $formValid = false;
+            }
+
+            if ($formValid) {
+                // check si email existe
+                $usersModel = new \Model\UsersModel();
+                if ($usersModel->emailExists($email) === true){
+                    // echo "user trouvé<br>";
+
+                    // Je récupère les données de l'utilisateur via l'email afin de récupérer l'id
+                    $userInfos = $usersModel->getUserByUsernameOrEmail($email);
+                    $userID = $userInfos['id'];
+                    // echo 'id du user: '.$userID.'<br>';
+
+                    // générer un token
+                    $tokenModel = new \W\Security\StringUtils();
+                    $token = $tokenModel->randomString();
+                    
+                    // ajout du token dans la DB
+                    $authModel = new \W\Security\AuthentificationModel();
+                    $data = $usersModel->update(
+                        array(
+                            'usr_token' => $token,
+                        ), $userID
+                    );
+                    
+                    // Si insertion ok
+                    if ($data !== false) {                      
+                        // afficher message success
+                        $this->flash('Un mail vous a été envoyé', 'success');
+                        
+                        //appeler fonction sendEmail avec token                  
+                        $link= 'www.micromonio.dev/reset_password/'.$token.'';
+                        $to = $userInfos['usr_email'];
+//                        $to = 'jesus.kevin93@hotmail.com';
+
+//                        $htmlContent = 'Test link : <a href"'.$link.'">Lien</a><br>';     
+
+//                        $htmlContent = 'Test link : <a href="www.micromonio.dev/reset_password/'.$token.'">Lien</a><br>';     
+                        $htmlContent = 'Cliquez sur le lien suivant pour réinitialiser votre mot de passe: '.$link.'';
+
+
+                        $usersModel->sendEmail($to, 'Reset du mot de passe', $htmlContent);
+                        
+                        // rediriger 
+                        $this->redirectToRoute('users_forgotPassword');
+                    }
+                    else {
+                        $this->flash('Erreur dans l\'insertion du token', 'danger');
+                    }
+                }
+                else {
+                    $this->flash('L\'email n\'existe pas', 'danger');
+                }
+            } // fin if formvalid
+        } // fin POST
+        
+        $this->show('users/forgot_password');
+    }
+    
+    public function getResetPasswordForm($token) {
+
+        // variable $formOK pour afficher ou pas le formulaire de renouvellement de mdp
+        // devient true uniquement si le token envoyé en url correspond à celui de la DB
+        $formOK = true;
+
+        $userModel = new \Model\UsersModel();
+        $data = $userModel->searchToken(array(
+            'usr_token' => $token
+        ));
+        
+        // si user trouvé
+        if (!empty($data)) {                     
+            $formOK = true;
+            // rediriger 
+            $this->show('users/reset_Password', array(
+                'formOK' => $formOK,
+            ));
+        }
+        else {
+            $formOK = false;
+            $this->show('users/reset_Password', array(
+                'formOK' => $formOK,
+            ));
+        }
+    }
+    
+    public function resetPassword($token) {
+        // changer mot de passe
+        if (!empty($_POST)) {
+            $password1 = isset($_POST['password1']) ? trim($_POST['password1']) : '';
+            $password2 = isset($_POST['password2']) ? trim($_POST['password2']) : '';
+            // Validation
+            $formValid = true;    
+            
+            if ($password1 !== $password2){
+                $formValid = false;
+                $this->flash('Les 2 mots de passe doivent être identiques !', 'danger');
+            }
+            else {
+                if (empty($password1)){
+                    $formValid = false;
+                    $this->flash("Le password est vide", 'danger');
+                }
+                if (strlen($password1) < 6) {
+                    $formValid = false;
+                    $this->flash("Le password doit faire au moins 6 caractères", 'danger');
+                }
+            }
+//            debug($data);exit;
+            // modifier le nouveau mdp et supprimer le token de la DB
+            if ($formValid) {
+                
+                // je récupère toutes les données du user selon le token reçu
+                $userModel = new \Model\UsersModel();
+                $data = $userModel->searchToken(array(
+                    'usr_token' => $token
+                ));
+ 
+                $authModel = new \W\Security\AuthentificationModel;
+                $updateData = $userModel->update(array(
+                    'usr_password' => $authModel->hashPassword($password1),
+                    'usr_token' => '',
+                ),$data[0]['id']);
+                
+//            debug($updateData);exit;
+                
+                // Si update réussit
+                if ($updatedata !== false) {
+                    // afficher message success
+                    $this->flash('Votre mot de passe a été réinitialisé.<br>Vous pouvez désormais vous connecter avec le nouveau mot de passe', 'success');
+
+                    // rediriger vers la home
+                    $this->redirectToRoute('users_signin');
+                }
+                else {
+                    $this->flash('Erreur dans la réinitialisation du mot de passe', 'danger');
+                }
+            }
+            
+        }
+        
+        $this->show('users/reset_password');
+    }
 }

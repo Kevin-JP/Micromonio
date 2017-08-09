@@ -16,7 +16,8 @@ $this->start('main_content'); ?>
             <label for="console">Modifier Jeu:</label>
             <select id="selectGame" name="console">
                 <?php foreach ($games as $key=>$value) :?>
-                    <option value="<?= $key+1 ?>"><?= $value['vid_name'] ?></option>
+                    
+                    <option value="<?= $key+1 ?>" <?php if ($gameinfos['vid_id'] == $key+1) : ?> selected <?php endif; ?>><?= $value['vid_name'] ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
@@ -53,7 +54,8 @@ $this->start('main_content'); ?>
                 <?php endforeach; ?>
             </select>
         </div>
-        <button type="submit" class="btn btn-default">Modifier</button>
+        <button type="submit" class="btn btn-primary">Valider</button>
+        <a class="btn-danger btn" href="<?= $this->url('delete_game', ['id'=>$gameinfos['vid_id']]); ?>">Supprimer</a>
     </form>
     </div>
     <div class="col-md-2 col-sm-2 col-xs-0"></div>
