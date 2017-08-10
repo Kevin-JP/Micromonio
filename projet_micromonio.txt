@@ -26,7 +26,7 @@
 
 8- Faire la page "Détails"
 
-9- Ajouter la "Suppression" à la page "Ajout/Modification d'un jeu vidéo"
+9- Ajouter la "Suppresion" à la page "Ajout/Modification d'un jeu vidéo"
 
 10- Ajouter la gestion du mot de passe oublié
 
@@ -37,6 +37,17 @@
 13- Faire la page "Ajout/Modification/Suppression" d'un genre
 
 </OPTIONS>
+
+<OPTIONS_PLUS>
+
+- Faire une page de contact : formulaire de contact + GoogleMaps du "siège" de la société
+- Dans la page "Détails", afficher en bas de page une liste de 4 autres jeux vidéo du même genre
+- Dans le formulaire de recherche, mettre en place un autocomplete, basé sur les titres des jeux vidéo en base de données
+- Ajouter le role "editor". Les utilisateurs ayant ce role pourront accéder à l'ajout/modification d'une Genre et d'une Console
+- Mettre en place un système (sur la page détails) de notes où les utilisateurs du site pourront noter un jeu (de 1 à 5). La note moyenne s'affichera sur la page de détails. Attention, une personne ne peut voter qu'une seule fois
+- Mettre en place un système similaire pour les consoles
+
+</OPTIONS_PLUS>
 
 <INFORMATION>
 

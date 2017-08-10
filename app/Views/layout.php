@@ -36,6 +36,7 @@
                         <!--Si admin alors affiche page Add/Edit-->
                         <?php if($_SESSION['user']['usr_role'] === 'admin'): ?>
                             <li><a href="<?= $this->url('add_game') ?>">Ajout d'un JV</a></li>
+                            <li><a href="<?= $this->url('add_console') ?>">Ajout d'une Console</a></li>
                         <?php endif; ?>
                         <li><a href="<?= $this->url('users_signout'); ?>">Se déconnecter</a></li>
                         <li style="line-height: 50px; padding: 0 15px;"><strong><?= $_SESSION['user']['usr_username'] ?></strong> est connecté</li>

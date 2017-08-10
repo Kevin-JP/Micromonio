@@ -20,6 +20,12 @@
         ['GET', '/admin/videogame/ajax/edit/[i:id]', 'VideoGame#getGame', 'edit_game'],
         ['POST', '/admin/videogame/ajax/edit/[i:id]', 'VideoGame#editGame', 'edit_game2'],
         ['GET|POST', '/admin/videogame/delete/[i:id]', 'VideoGame#deleteGame', 'delete_game'],
+        
+        // Add/Edit/Delete Console
+        ['GET|POST', '/admin/console/add/', 'Console#addEditConsole', 'add_console'],
+        ['GET|POST', '/admin/console/edit/[i:id]', 'Console#editConsole', 'edit_console'],
+        ['GET|POST', '/admin/console/ajax/edit/[i:id]', 'Console#ajaxEditConsole', 'ajax_edit_console'],
+        ['GET|POST', '/admin/console/delete/', 'Console#deleteConsole', 'delete_console'],
 
         
         // Users signin & signup
